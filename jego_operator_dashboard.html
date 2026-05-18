@@ -1,0 +1,713 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JéGO X Fleet Monitoring</title>
+        <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #121212; color: #e0e0e0; padding: 20px; }
+            .container { max-width: 900px; margin: 0 auto; }
+            .header { border-bottom: 1px solid #333; padding-bottom: 20px; margin-bottom: 20px; }
+            .controls { display: flex; gap: 15px; margin-bottom: 20px; background: #1e1e1e; padding: 15px; border-radius: 8px; }
+            select { padding: 8px; background: #2d2d2d; color: white; border: 1px solid #444; border-radius: 4px; outline: none; cursor: pointer; }
+            .card { background-color: #1e1e1e; border-radius: 8px; margin-bottom: 16px; padding: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+            .card-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; margin-bottom: 10px; }
+            .card-title { font-size: 18px; font-weight: bold; margin: 0; }
+            .card-meta { font-size: 13px; color: #aaa; }
+            .action-box { background-color: #2d2d2d; border: 1px solid #444; padding: 10px; border-radius: 6px; color: #ffeb3b; margin: 10px 0; font-size: 14px; }
+            .telemetry-badges { display: flex; gap: 15px; font-size: 12px; color: #bbb; margin-top: 10px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="margin:0; color: white;">JéGO X Operator Dashboard</h1>
+                <p style="color: #aaa; margin-top:5px;">Live maintenance alerts and anomaly detection.</p>
+            </div>
+
+            <div class="controls">
+                <select id="typeFilter" onchange="filterCards()">
+                    <option value="all">All Alert Types</option>
+                    <option value="high_load">High Mechanical Load</option>
+                    <option value="battery_drain">Rapid Battery Drain</option>
+                    <option value="default">Energy Pattern Anomaly</option>
+                </select>
+
+                <select id="vehicleFilter" onchange="filterCards()">
+                    <option value="all">All Vehicles</option>
+                    <option value="JEGO-V001">JEGO-V001</option><option value="JEGO-V002">JEGO-V002</option><option value="JEGO-V003">JEGO-V003</option>
+                </select>
+            </div>
+
+            <div id="alertsContainer">
+                
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 06:19:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (81.8A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 81.8A</span>
+                    <span><b>Speed:</b> 19.6 km/h</span>
+                    <span><b>SoC:</b> 88.92%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 06:24:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (64.4A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 64.4A</span>
+                    <span><b>Speed:</b> 17.9 km/h</span>
+                    <span><b>SoC:</b> 86.77%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 07:03:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (88.1A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 88.1A</span>
+                    <span><b>Speed:</b> 21.1 km/h</span>
+                    <span><b>SoC:</b> 72.33%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 07:11:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (68.2A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 68.2A</span>
+                    <span><b>Speed:</b> 14.8 km/h</span>
+                    <span><b>SoC:</b> 68.75%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 07:15:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (69.4A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 69.4A</span>
+                    <span><b>Speed:</b> 12.4 km/h</span>
+                    <span><b>SoC:</b> 66.99%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 08:33:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (66.9A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 66.9A</span>
+                    <span><b>Speed:</b> 13.2 km/h</span>
+                    <span><b>SoC:</b> 34.23%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 08:55:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (158.7A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 158.7A</span>
+                    <span><b>Speed:</b> 42.5 km/h</span>
+                    <span><b>SoC:</b> 27.9%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="battery_drain" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #f39c12">
+                <div class="card-title" style="color: #f39c12">Rapid Battery Drain</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 08:56:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>SoC dropped significantly while drawing 177.8A. Current SoC: 27.38%.</p>
+                <div class="action-box"><b>Action Required:</b> Check battery health and charging connections.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 177.8A</span>
+                    <span><b>Speed:</b> 69.9 km/h</span>
+                    <span><b>SoC:</b> 27.38%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="battery_drain" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #f39c12">
+                <div class="card-title" style="color: #f39c12">Rapid Battery Drain</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 08:57:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>SoC dropped significantly while drawing 186.3A. Current SoC: 26.93%.</p>
+                <div class="action-box"><b>Action Required:</b> Check battery health and charging connections.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 186.3A</span>
+                    <span><b>Speed:</b> 44.0 km/h</span>
+                    <span><b>SoC:</b> 26.93%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 08:58:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (162.5A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 162.5A</span>
+                    <span><b>Speed:</b> 35.0 km/h</span>
+                    <span><b>SoC:</b> 26.73%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="battery_drain" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #f39c12">
+                <div class="card-title" style="color: #f39c12">Rapid Battery Drain</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 08:58:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>SoC dropped significantly while drawing 183.6A. Current SoC: 26.3%.</p>
+                <div class="action-box"><b>Action Required:</b> Check battery health and charging connections.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 183.6A</span>
+                    <span><b>Speed:</b> 73.7 km/h</span>
+                    <span><b>SoC:</b> 26.3%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 08:59:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (170.2A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 170.2A</span>
+                    <span><b>Speed:</b> 53.7 km/h</span>
+                    <span><b>SoC:</b> 25.75%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 09:00:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (171.7A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 171.7A</span>
+                    <span><b>Speed:</b> 65.2 km/h</span>
+                    <span><b>SoC:</b> 25.36%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="high_load" data-vehicle="JEGO-V001">
+            <div class="card-header" style="border-bottom: 2px solid #e74c3c">
+                <div class="card-title" style="color: #e74c3c">High Mechanical Load</div>
+                <div class="card-meta">JEGO-V001 &bull; 2026-05-14 14:21:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual current draw of 90.0A detected at 12.4 km/h.</p>
+                <div class="action-box"><b>Action Required:</b> Inspect drivetrain and motor for resistance.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 90.0A</span>
+                    <span><b>Speed:</b> 12.4 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 06:06:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (70.0A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 70.0A</span>
+                    <span><b>Speed:</b> 17.7 km/h</span>
+                    <span><b>SoC:</b> 89.66%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 06:08:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (54.7A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 54.7A</span>
+                    <span><b>Speed:</b> 20.3 km/h</span>
+                    <span><b>SoC:</b> 89.05%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 06:40:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (50.2A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 50.2A</span>
+                    <span><b>Speed:</b> 14.9 km/h</span>
+                    <span><b>SoC:</b> 73.81%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 06:48:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (84.6A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 84.6A</span>
+                    <span><b>Speed:</b> 22.8 km/h</span>
+                    <span><b>SoC:</b> 70.27%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 07:16:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (83.8A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 83.8A</span>
+                    <span><b>Speed:</b> 13.4 km/h</span>
+                    <span><b>SoC:</b> 58.54%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 07:48:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (87.9A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 87.9A</span>
+                    <span><b>Speed:</b> 15.0 km/h</span>
+                    <span><b>SoC:</b> 41.61%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 11:46:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (131.6A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 131.6A</span>
+                    <span><b>Speed:</b> 22.9 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 11:47:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (129.2A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 129.2A</span>
+                    <span><b>Speed:</b> 41.9 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 11:56:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (116.4A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 116.4A</span>
+                    <span><b>Speed:</b> 18.0 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 11:56:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (134.2A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 134.2A</span>
+                    <span><b>Speed:</b> 45.0 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 12:00:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (127.4A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 127.4A</span>
+                    <span><b>Speed:</b> 25.7 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 12:08:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (108.6A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 108.6A</span>
+                    <span><b>Speed:</b> 15.7 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="high_load" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #e74c3c">
+                <div class="card-title" style="color: #e74c3c">High Mechanical Load</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 12:13:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual current draw of 121.9A detected at 13.2 km/h.</p>
+                <div class="action-box"><b>Action Required:</b> Inspect drivetrain and motor for resistance.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 121.9A</span>
+                    <span><b>Speed:</b> 13.2 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 12:29:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (127.9A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 127.9A</span>
+                    <span><b>Speed:</b> 35.3 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 12:38:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (128.0A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 128.0A</span>
+                    <span><b>Speed:</b> 29.7 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 12:39:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (121.1A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 121.1A</span>
+                    <span><b>Speed:</b> 32.0 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V002">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V002 &bull; 2026-05-14 18:32:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (90.3A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 90.3A</span>
+                    <span><b>Speed:</b> 14.9 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 06:14:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (37.4A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 37.4A</span>
+                    <span><b>Speed:</b> 12.7 km/h</span>
+                    <span><b>SoC:</b> 88.46%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 06:27:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (89.7A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 89.7A</span>
+                    <span><b>Speed:</b> 28.4 km/h</span>
+                    <span><b>SoC:</b> 81.98%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 06:29:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (88.3A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 88.3A</span>
+                    <span><b>Speed:</b> 16.3 km/h</span>
+                    <span><b>SoC:</b> 80.63%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 06:56:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (56.8A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 56.8A</span>
+                    <span><b>Speed:</b> 15.0 km/h</span>
+                    <span><b>SoC:</b> 70.48%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="high_load" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #e74c3c">
+                <div class="card-title" style="color: #e74c3c">High Mechanical Load</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 09:17:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual current draw of 90.7A detected at 12.3 km/h.</p>
+                <div class="action-box"><b>Action Required:</b> Inspect drivetrain and motor for resistance.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 90.7A</span>
+                    <span><b>Speed:</b> 12.3 km/h</span>
+                    <span><b>SoC:</b> 5.64%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 14:56:00+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (87.6A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 87.6A</span>
+                    <span><b>Speed:</b> 12.4 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="default" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #3498db">
+                <div class="card-title" style="color: #3498db">Energy Pattern Anomaly</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 17:00:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual consumption detected (166.4A).</p>
+                <div class="action-box"><b>Action Required:</b> Monitor vehicle performance during next shift.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 166.4A</span>
+                    <span><b>Speed:</b> 67.8 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="battery_drain" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #f39c12">
+                <div class="card-title" style="color: #f39c12">Rapid Battery Drain</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 17:01:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>SoC dropped significantly while drawing 179.4A. Current SoC: 5.0%.</p>
+                <div class="action-box"><b>Action Required:</b> Check battery health and charging connections.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 179.4A</span>
+                    <span><b>Speed:</b> 26.7 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-type="high_load" data-vehicle="JEGO-V003">
+            <div class="card-header" style="border-bottom: 2px solid #e74c3c">
+                <div class="card-title" style="color: #e74c3c">High Mechanical Load</div>
+                <div class="card-meta">JEGO-V003 &bull; 2026-05-14 17:26:30+00:00</div>
+            </div>
+            <div class="card-body">
+                <p>Unusual current draw of 91.6A detected at 12.3 km/h.</p>
+                <div class="action-box"><b>Action Required:</b> Inspect drivetrain and motor for resistance.</div>
+                <div class="telemetry-badges">
+                    <span><b>Current:</b> 91.6A</span>
+                    <span><b>Speed:</b> 12.3 km/h</span>
+                    <span><b>SoC:</b> 5.0%</span>
+                </div>
+            </div>
+        </div>
+        
+            </div>
+        </div>
+
+        <script>
+            // Bulletproof Javascript filtering
+            function filterCards() {
+                const typeFilter = document.getElementById('typeFilter').value;
+                const vehicleFilter = document.getElementById('vehicleFilter').value;
+                const cards = document.querySelectorAll('.card');
+
+                cards.forEach(card => {
+                    const cardType = card.getAttribute('data-type');
+                    const cardVehicle = card.getAttribute('data-vehicle');
+
+                    const typeMatches = (typeFilter === 'all' || cardType === typeFilter);
+                    const vehicleMatches = (vehicleFilter === 'all' || cardVehicle === vehicleFilter);
+
+                    // Use inline display styling instead of CSS classes for reliable hiding/showing
+                    if (typeMatches && vehicleMatches) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        </script>
+    </body>
+    </html>
+    
